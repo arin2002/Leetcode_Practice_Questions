@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+       unordered_map<int,int>hashmap;
+        vector<int>v;
+        for(int i=0;i<nums.size();i++)
+        {
+            // hashmap.insert({nums[i],i});
+            hashmap[nums[i]] = i;
+        }
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            int r=target-nums[i];
+            
+            if(hashmap.find(r)==hashmap.end() && nums[0]==r)
+                continue;
+            else
+            {
+                if(nums[0]!=r )
+                {
+                auto itr=hashmap.find(r);
+                int j=itr->second;
+                v.push_back(i);
+                v.push_back(j);
+                break;
+                }
+            }
+        }
+        return v;
+    }
+};
