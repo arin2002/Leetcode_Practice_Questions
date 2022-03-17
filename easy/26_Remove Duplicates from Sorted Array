@@ -1,0 +1,43 @@
+// map approach
+int removeDuplicates(vector<int>& nums) {
+        map<int,int>m;
+        int j=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            m[nums[i]]=i;
+        }
+        for(auto i=m.begin();i!=m.end();i++,j++)
+        {
+            nums[j]=i->first;
+        }
+        return j;
+    }
+    
+// 2 pointer (prefered)
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=0,j=0,n=nums.size();
+        int c=1;
+        
+        if(n==1)
+            return 1;
+        while(i<n && j<n)
+        {
+            if(nums[i]==nums[j])
+            {
+                j++;
+                continue;
+            }
+            else
+            {
+                i++;
+                nums[i]=nums[j];
+                j++;
+                c++;
+            }
+        }
+        return c;
+    }
+};
